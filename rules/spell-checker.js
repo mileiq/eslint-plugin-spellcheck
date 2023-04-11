@@ -128,6 +128,7 @@ module.exports = {
         'use strict';
         var defaultOptions = {
             langDir: defaultSettings.langDir,
+            jsxText: true,
             comments: true,
             strings: true,
             identifiers: true,
@@ -211,6 +212,12 @@ module.exports = {
                 })
             }
         }
+        
+        function checkJSXText(aNode) {
+            if (options.jsxText) {
+                underscoreParser(aNode, aNode.value, 'JSXText');
+            }
+        }
 
         function checkComment(aNode) {
             if (options.comments) {
@@ -277,7 +284,8 @@ module.exports = {
             'LineComment': checkComment,
             'Literal': checkLiteral,
             'TemplateElement': checkTemplateElement,
-            'Identifier': checkIdentifier
+            'Identifier': checkIdentifier,
+            JSXText: checkJSXText,
         };
     }
 };
