@@ -57,6 +57,10 @@ module.exports = {
             {
                 type: 'object',
                 properties: {
+                    jsxText: {
+                        type: 'boolean',
+                        default: true
+                    },
                     comments: {
                         type: 'boolean',
                         default: true
