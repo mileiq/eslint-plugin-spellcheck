@@ -1,13 +1,12 @@
 # eslint-plugin-spellcheck
 [eslint](http://eslint.org) plugin to spell check words on identifiers, Strings and comments of javascript files.
-[![dependencies Status](https://david-dm.org/aotaduy/eslint-plugin-spellcheck/status.svg)](https://david-dm.org/aotaduy/eslint-plugin-spellcheck)
-[![Build CI](https://github.com/aotaduy/eslint-plugin-spellcheck/actions/workflows/node.js.yml/badge.svg)](https://github.com/aotaduy/eslint-plugin-spellcheck/actions/workflows/node.js.yml)
+
 ## Usage in a project
 
 1. Install `eslint-plugin-spellcheck` as a dev-dependency:
 
     ```shell
-    npm install --save-dev eslint-plugin-spellcheck
+    npm install --save-dev https://github.com/mileiq/eslint-plugin-spellcheck
     ```
 
 2. Enable the plugin by adding it to your `.eslintrc`:
@@ -35,6 +34,7 @@
    "rules": {
        "spellcheck/spell-checker": [1,
            {
+               "jsxText": true,
                "comments": true,
                "strings": true,
                "identifiers": true,
@@ -65,6 +65,9 @@
  This ESLint plugin, like others, can be reconfigured to produce errors (2), warnings (1), or disabled (0) with the first numeric argument.  For more information on ESLint configuration, see: http://eslint.org/docs/user-guide/configuring
 
 ````
+"jsxText": <<Boolean>> default: true
+Check Spelling inside JSX
+
 "comments": <<Boolean>> default: true
 Check Spelling inside comments
 
@@ -105,63 +108,3 @@ i.e: "^[-\\w]+\/[-\\w\\.]+$" will ignore MIME types.
 Words with a character-amount of less than the minLength will not be spell-checked.
 ````
 
-Check example below
-
-
-## Usage globally
-
-1. Install `eslint-plugin-spellcheck` as a global package:
-
-    ```shell
-    npm install -g eslint-plugin-spellcheck
-    ```
-
-2. Enable the plugin by adding it to your `eslint.json`:
-
-    ```json
-    "plugins": [
-       "spellcheck"
-   ],
-   "rules": {
-       "spellcheck/spell-checker": [1,
-           {
-               "comments": true,
-               "strings": true,
-               "identifiers": true,
-               "lang": "en_US",
-               "skipWords": [
-                   "dict",
-                   "aff",
-                   "hunspellchecker",
-                   "hunspell",
-                   "utils"
-                ],
-                "skipIfMatch": [
-                    "http://[^s]*"
-                ],
-                "skipWordIfMatch": [
-                    "^foobar.*$"
-                ],
-                "minLength": 3
-            }
-        ]
-   }
-    ```
-
-## Skipping words ending with a number
-To skip words like md5, sha1 and sha256, add to `skipWords` the root of the word, that is, without the number:
-
-```json
-"rules": {
-    "spellcheck/spell-checker": [1,
-        {
-            "skipWords": [
-                "md",
-                "sha"
-            ],
-        }
-    ]
-}
-```
-
-Please contact me with any issues on github or check my blog (spanish) [Area 204](https://aotaduy.github.io/area204/)
